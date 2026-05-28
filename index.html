@@ -61,6 +61,65 @@
       background: #cccccc;
       color: #666666;
     }
+
+    /* 弹窗遮罩 */
+    .modal-mask {
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* 弹窗内容 */
+    .modal {
+      width: 300px;
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .modal-text {
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .cancel-btn,
+    .confirm-btn {
+      flex: 1;
+      height: 42px;
+      border-radius: 21px;
+      border: none;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .cancel-btn {
+      background: #f2f2f2;
+      color: #666;
+    }
+
+    .confirm-btn {
+      background: #1677ff;
+      color: white;
+    }
   </style>
 </head>
 
@@ -77,11 +136,37 @@
       <p>适用门店：附近参与活动门店</p>
     </div>
 
-    <button id="exchangeBtn" class="exchange-btn" onclick="exchangeCoupon()">立即兑换</button>
+    <button id="exchangeBtn" class="exchange-btn" onclick="showModal()">立即兑换</button>
+  </div>
+
+  <!-- 自定义弹窗 -->
+  <div id="modalMask" class="modal-mask">
+    <div class="modal">
+      <div class="modal-title">确认兑换</div>
+      <div class="modal-text">
+        确认兑换哈尔滨啤酒一箱吗？<br>
+        兑换后该优惠券将不可再次使用。
+      </div>
+
+      <div class="modal-actions">
+        <button class="cancel-btn" onclick="hideModal()">取消</button>
+        <button class="confirm-btn" onclick="confirmExchange()">确认兑换</button>
+      </div>
+    </div>
   </div>
 
   <script>
-    function exchangeCoupon() {
+    function showModal() {
+      const modal = document.getElementById("modalMask");
+      modal.style.display = "flex";
+    }
+
+    function hideModal() {
+      const modal = document.getElementById("modalMask");
+      modal.style.display = "none";
+    }
+
+    function confirmExchange() {
       const status = document.getElementById("couponStatus");
       const button = document.getElementById("exchangeBtn");
 
@@ -92,7 +177,7 @@
       button.classList.add("used");
       button.disabled = true;
 
-      alert("兑换成功");
+      hideModal();
     }
   </script>
 </body>
