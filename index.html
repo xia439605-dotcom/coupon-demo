@@ -36,6 +36,10 @@
       font-weight: bold;
     }
 
+    .status-used {
+      color: #999;
+    }
+
     .info {
       color: #666;
       line-height: 1.8;
@@ -52,6 +56,11 @@
       font-size: 16px;
       font-weight: bold;
     }
+
+    .exchange-btn.used {
+      background: #cccccc;
+      color: #666666;
+    }
   </style>
 </head>
 
@@ -61,19 +70,29 @@
   <div class="coupon-card">
     <div class="product-name">哈尔滨啤酒一箱</div>
 
-    <p>券状态：<span class="status">未兑换</span></p>
+    <p>券状态：<span id="couponStatus" class="status">未兑换</span></p>
 
     <div class="info">
       <p>有效期：2026-06-30 前有效</p>
       <p>适用门店：附近参与活动门店</p>
     </div>
 
-    <button class="exchange-btn" onclick="exchangeCoupon()">立即兑换</button>
+    <button id="exchangeBtn" class="exchange-btn" onclick="exchangeCoupon()">立即兑换</button>
   </div>
 
   <script>
     function exchangeCoupon() {
-      alert("确认兑换该优惠券吗？");
+      const status = document.getElementById("couponStatus");
+      const button = document.getElementById("exchangeBtn");
+
+      status.innerText = "已兑换";
+      status.classList.add("status-used");
+
+      button.innerText = "已兑换";
+      button.classList.add("used");
+      button.disabled = true;
+
+      alert("兑换成功");
     }
   </script>
 </body>
