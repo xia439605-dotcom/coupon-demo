@@ -7,28 +7,96 @@
   <style>
     body {
       margin: 0;
-      padding: 20px;
-      background: #f5f5f5;
+      background: #e9edf3;
       font-family: Arial, sans-serif;
     }
 
-    .page-title {
+    .app {
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      background: #f7f8fa;
+      position: relative;
+      padding-bottom: 96px;
+      box-sizing: border-box;
+    }
+
+    .nav {
+      height: 52px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .back {
+      position: absolute;
+      left: 16px;
       font-size: 24px;
+      color: #333333;
+    }
+
+    .nav-title {
+      font-size: 17px;
       font-weight: bold;
-      margin-bottom: 20px;
+      color: #111111;
+    }
+
+    .content {
+      padding: 16px;
     }
 
     .coupon-card {
-      background: white;
-      border-radius: 16px;
+      background: #ffffff;
+      border-radius: 18px;
       padding: 20px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #eaf2ff;
+      color: #1677ff;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 14px;
     }
 
     .product-name {
       font-size: 22px;
       font-weight: bold;
-      margin-bottom: 12px;
+      color: #111111;
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 14px;
+      color: #888888;
+      margin-bottom: 20px;
+    }
+
+    .status-box {
+      background: #f5f8ff;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
+    }
+
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+    }
+
+    .status-label {
+      color: #666666;
     }
 
     .status {
@@ -37,22 +105,73 @@
     }
 
     .status-used {
-      color: #999;
+      color: #999999;
     }
 
-    .info {
-      color: #666;
+    .info-list {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 12px;
+    }
+
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 0;
+      font-size: 14px;
+      border-bottom: 1px solid #f5f5f5;
+    }
+
+    .info-label {
+      color: #999999;
+      white-space: nowrap;
+    }
+
+    .info-value {
+      color: #333333;
+      text-align: right;
+    }
+
+    .rule-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .rule-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #111111;
+    }
+
+    .rule-text {
+      font-size: 14px;
+      color: #666666;
       line-height: 1.8;
+    }
+
+    .bottom-bar {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      background: #ffffff;
+      padding: 12px 16px 20px;
+      box-sizing: border-box;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.06);
     }
 
     .exchange-btn {
       width: 100%;
-      height: 46px;
-      margin-top: 20px;
+      height: 48px;
       border: none;
-      border-radius: 23px;
+      border-radius: 24px;
       background: #1677ff;
-      color: white;
+      color: #ffffff;
       font-size: 16px;
       font-weight: bold;
     }
@@ -72,25 +191,29 @@
       background: rgba(0, 0, 0, 0.45);
       justify-content: center;
       align-items: center;
+      z-index: 100;
     }
 
     .modal {
       width: 300px;
-      background: white;
-      border-radius: 16px;
+      background: #ffffff;
+      border-radius: 18px;
       padding: 24px;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .modal-title {
       font-size: 20px;
       font-weight: bold;
       margin-bottom: 12px;
+      color: #111111;
     }
 
     .modal-text {
-      color: #666;
-      line-height: 1.6;
+      color: #666666;
+      font-size: 15px;
+      line-height: 1.7;
       margin-bottom: 24px;
     }
 
@@ -111,22 +234,22 @@
 
     .cancel-btn {
       background: #f2f2f2;
-      color: #666;
+      color: #666666;
     }
 
     .confirm-btn {
       background: #1677ff;
-      color: white;
+      color: #ffffff;
     }
 
     .toast {
       display: none;
       position: fixed;
-      top: 30px;
+      top: 70px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.75);
-      color: white;
+      background: rgba(0, 0, 0, 0.78);
+      color: #ffffff;
       padding: 12px 20px;
       border-radius: 24px;
       font-size: 15px;
@@ -136,22 +259,59 @@
 </head>
 
 <body>
-  <div class="page-title">优惠券详情页</div>
-
-  <div class="coupon-card">
-    <div class="product-name">哈尔滨啤酒一箱</div>
-
-    <p>券状态：<span id="couponStatus" class="status">未兑换</span></p>
-
-    <div class="info">
-      <p>有效期：2026-06-30 前有效</p>
-      <p>适用门店：附近参与活动门店</p>
+  <div class="app">
+    <div class="nav">
+      <div class="back">‹</div>
+      <div class="nav-title">优惠券详情</div>
     </div>
 
-    <button id="exchangeBtn" class="exchange-btn" onclick="showModal()">立即兑换</button>
+    <div class="content">
+      <div class="coupon-card">
+        <div class="tag">赠酒券</div>
+
+        <div class="product-name">哈尔滨啤酒一箱</div>
+        <div class="product-desc">到店出示优惠券，完成兑换后不可重复使用</div>
+
+        <div class="status-box">
+          <div class="status-row">
+            <span class="status-label">当前状态</span>
+            <span id="couponStatus" class="status">未兑换</span>
+          </div>
+        </div>
+
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-label">有效期</span>
+            <span class="info-value">2026-06-30 前有效</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">适用门店</span>
+            <span class="info-value">附近参与活动门店</span>
+          </div>
+
+          <div class="info-item">
+            <span class="info-label">兑换商品</span>
+            <span class="info-value">哈尔滨啤酒一箱</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rule-title">使用说明</div>
+        <div class="rule-text">
+          1. 本券仅限参与活动门店使用。<br>
+          2. 兑换成功后，优惠券状态将变为已兑换。<br>
+          3. 每张优惠券仅可兑换一次，请确认后再操作。
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <button id="exchangeBtn" class="exchange-btn" onclick="showModal()">立即兑换</button>
+    </div>
   </div>
 
-  <!-- 自定义确认弹窗 -->
   <div id="modalMask" class="modal-mask">
     <div class="modal">
       <div class="modal-title">确认兑换</div>
@@ -168,7 +328,6 @@
     </div>
   </div>
 
-  <!-- 成功提示 -->
   <div id="toast" class="toast">兑换成功</div>
 
   <script>
