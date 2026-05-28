@@ -2,14 +2,24 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>赠酒券详情页</title>
+  <title>优惠券详情页</title>
 </head>
 <body>
-  <h1>赠酒券详情页</h1>
+  <h1>优惠券详情页</h1>
 
-  <p>商品：哈尔滨啤酒一箱</p>
-  <p>状态：未兑换</p>
+  <div>
+    <h2>哈尔滨啤酒一箱</h2>
+    <p>券状态：未兑换</p>
+    <p>有效期：2026-06-30 前有效</p>
+    <p>适用门店：附近参与活动门店</p>
 
-  <button>立即兑换</button>
+    <button onclick="exchangeCoupon()">立即兑换</button>
+  </div>
+
+  <script>
+    function exchangeCoupon() {
+      alert("确认兑换该优惠券吗？");
+    }
+  </script>
 </body>
 </html>
